@@ -1,7 +1,6 @@
 import os
 
-from flask import Flask, request
-# The `ShowAndTellInference` class
+from flask import Flask, request, render_template, jsonify
 from im2txt_inference import ShowAndTellInference
 
 # Create a Flask instance
@@ -23,8 +22,12 @@ def inference():
     Pass the image in multipart/form-data to the inference function
     """
     if request.method == 'POST':
-        return MODEL_INST.inference(request.files['image'])
+        return jsonify(MODEL_INST.inference(request.files['image']))
     return ''
+
+@APP.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
 
 # Start the web server
 PORT = os.getenv('PORT', '5000')

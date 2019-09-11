@@ -63,4 +63,5 @@ class ShowAndTellInference(object):
             sentence = ' '.join(sentence)
             results.append({'caption': sentence, 'p': math.exp(caption.logprob)})
         # Ouput as JSON format
-        return json.dumps(results)
+        return results
+        #return json.dumps(results)
