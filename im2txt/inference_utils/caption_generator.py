@@ -54,12 +54,12 @@ class Caption(object):
       return -1
     else:
       return 1
-  
+
   # For Python 3 compatibility (__cmp__ is deprecated).
   def __lt__(self, other):
     assert isinstance(other, Caption)
     return self.score < other.score
-  
+
   # Also for Python 3 compatibility.
   def __eq__(self, other):
     assert isinstance(other, Caption)
@@ -179,7 +179,8 @@ class CaptionGenerator(object):
         # Sort the indexes with numpy, select the last self.beam_size
         # (3 by default) (ie, the most likely) and then reverse the sorted
         # indexes with [::-1] to sort them from higher to lower.
-        most_likely_words = np.argsort(word_probabilities)[:-self.beam_size][::-1]
+        #most_likely_words = np.argsort(word_probabilities)[:-self.beam_size][::-1]
+        most_likely_words = np.argsort(word_probabilities)[-self.beam_size:][::-1]
 
         for w in most_likely_words:
           p = word_probabilities[w]
