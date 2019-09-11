@@ -24,4 +24,8 @@ node_modules/
 .next
 out/
 
+# Machine learning weight and models
+
+chkpt/
+
 .direnv
